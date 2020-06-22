@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind的class的绑定</title>
+    <style>
+        .div1{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+        .div2{
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+        }
+    </style>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="div1"></div>
+        <div class="div2"></div>
+        <div :class="divstyle"></div>
+        <div :class=["div1","div2"]></div>
+        <!-- <div :class="div1,div2"></div> -->
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                divstyle:{
+                    div1:true,
+                    div2:false
+                }
+            }
+        })
+    </script>
+</body>
+</html>

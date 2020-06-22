@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定</title>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="add">加数</button>
+        {{count}}
+        <ul>
+            <li v-for="(user,index) in users" :key="index" @click="getEle(user,$event)">
+                {{user.name}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        /**
+         * v-on实现事件的绑定 简写@
+         * 使用v-on:事件名称
+         * 
+         * 在vue模板的this默认指向vue实例，可以省略this
+        */
+        let app = new Vue({
+            el:"#app",
+            data:{
+                count:1,
+                users:[{
+                    name:"小明",
+                    id:1
+                },{
+                    name:"小红",
+                    id:2
+                },{
+                    name:"小李",
+                    id:3
+                }]
+            },
+            methods:{
+                add(event){
+                    this.count++
+                    event.target.style.color="red"
+                },
+                getEle(user,e){ 
+                    console.log(user,e)             
+                }
+            }
+        })
+    </script>
+</body>
+</html>

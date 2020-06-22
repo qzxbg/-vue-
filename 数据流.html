@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据流</title>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <div id="app">{{val}}
+        <p>单向数据流</p>
+        <input type="text" :value="val"/>
+        <p>双向数据流</p>
+        {{val}}
+        <input type="text" v-model="val"/>
+    </div>
+    <!-- v-bind的作用和React中的非受控组件的作用一样 -->
+    <!-- v-model的作用和React中的受控组件的作用一样 -->
+    <script>
+        /**
+         * 单向数据流：
+         *  vue中的数据发生改变会驱动视图改变，而视图中数据的变化不会改变vue中的数据
+         * 
+         * 双向数据流：
+         *  数据的变化可以驱动视图中数据的变化，视图中数据的变化也可以影响数据的变化
+         * v-model只是用表单元素
+        */
+        let app = new Vue({
+            el:"#app",
+            data:{
+               val:1 
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./static/css/css.css" />
+</head>
+<body>
+    
+    <div id="app">
+        <header id="header">
+            <a href="/" id="logo"></a>
+    
+            <nav id="nav">
+                <a href="">手机</a>
+                <a href="">笔记本</a>
+                <a href="">家居</a>
+            </nav>
+    
+            <div id="user">
+                <a href="">登录</a>
+                <a href="">注册</a>
+            </div>
+        </header>
+    
+        <div id="main">
+    
+            <div class="cart">
+    
+                <div class="panel flex-row">
+                    <div class="flex-column-checkbox tal">
+                        <label>
+                            <input type="checkbox" v-model="allChecked"/>
+                            <span class="txt">全选</span>
+                        </label>
+                    </div>
+                    <div class="flex-column-name tal">
+                        商品
+                    </div>
+                    <div class="flex-column-price">
+                        单价
+                    </div>
+                    <div class="flex-column-quantity">
+                        数量
+                    </div>
+                    <div class="flex-column-total">
+                        小计
+                    </div>
+                    <div class="flex-column-operation">
+                        操作
+                    </div>
+                </div>
+                <ul class="cart-items-list" v-if="cartItems.length">
+                    <li class="panel flex-row" v-for="good in cartItems" :key="good.id">
+                        <div class="flex-column-checkbox tal">
+                            <input type="checkbox" v-model="good.checked">
+                        </div>
+                        <div class="flex-column-name tal">
+                            <img :src="'./data/images/' + good.cover" alt="" class="cover">
+                            <span class="name">{{good.name}}</span>
+                        </div>
+                        <div class="flex-column-price">
+                            <span class="price">￥{{(good.price/100).toFixed(2)}}</span>
+                        </div>
+                        <div class="flex-column-quantity">
+                            <span class="quantity-sub" @click="reduceQuantity(good)">-</span>
+                            <span class="quantity-num">{{good.quantity}}</span>
+                            <span class="quantity-add" @click="addQuantity(good)">+</span>
+                        </div>
+                        <div class="flex-column-total">
+                            <span class="total">￥{{(good.price * good.quantity/100).toFixed(2)}}</span>
+                        </div>
+                        <div class="flex-column-operation">
+                            <span class="operation-delete" @click="deleteGood(good)">删除</span>
+                        </div>
+                    </li>
+        
+                </ul>
+                
+                <ul class="cart-items-list" v-else>
+    
+                    <li class="panel flex-row">
+                        购物车是空的
+                    </li>
+        
+                </ul>
+    
+                <div class="cart-footer panel flex-row">
+    
+                    <div>
+                        <input type="checkbox" v-model="allChecked"/>
+                        <span>全选</span>
+                        <span @click="deleteSeletedAll">删除</span>
+                    </div>
+                    <div>
+                        <span>一共选择了 <strong class="quantity">{{total}}</strong> 件商品，总计 <strong class="total">¥ {{totalPrice}}</strong> 元</span>
+                        <span :class="'pay-btn '+ (isPay?payStyle:'disabled')">立即支付</span>
+                    </div>
+    
+                </div>
+    
+        
+                <div class="pagination-container">
+                    
+                    <div class="pagination">
+                        <a href="" class="prev">上一页</a>
+                        <a href="">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>
+                        <a href="" class="current">4</a>
+                        <a href="">5</a>
+                        <a href="">6</a>
+                        <a href="">7</a>
+                        <a href="">8</a>
+                        <a href="" class="next">下一页</a>
+                    </div>      
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+
+    <script src="./js/vue.js"></script>
+    <script src="data/cartItems.js"></script>
+    <script src="./js/cart.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/index.js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        /*
+            Vue提供了一个Vue的类（构造函数）,应用的根组件就是通过这个类来构建的
+
+            我们通常使用一些库，框架很多都是调用他们提供的属性，方法来完成具体的需求，有的却是根据提供的参数
+            (选项)来完成功能的，比如Vue
+        */
+        let app = new Vue({
+            //template模板->解析->Dom
+            template:`
+                <div>开课吧{{name}}</div>
+            `,
+            //vue原生数据的定义
+            //数据的访问方式：
+            //1.在模板中通过模板语法{{}}
+            //2.通过vue实例直接调用数据
+            //3.通过调用vue实例的_data(私有数据)/$data方法来访问数据
+            data:{
+                name:"kkb"
+            }
+        });
+        //将模板挂载到指定的元素中
+        //模板的挂载有两种方式：
+        //1.调用vue实例的$mount()方法
+        //2.在vue构造函数中配置el选项相当于template+$mount
+        app.$mount("#app")
+        //数据的访问
+        console.log(app.name,app._data.name,app.$data.name)
+
+
+    </script>
+</body>
+</html>

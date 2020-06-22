@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板渲染</title>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <div id="app">开课吧</div>
+    <script>
+
+        /**
+         * 每一个独立的组件（包括根组件）,模板中有且仅有一个顶层元素
+         * 根组件的模板渲染会替换挂载点，所以html，body两个元素标签不能作为挂载点
+        */
+
+        // //根组件挂载方式一
+        // let app = new Vue({
+        //     template:`
+        //         <div>根组件挂载</div>
+        //     `
+        // })
+
+        // app.$mount("#app");
+
+        /**
+         * el选项的值就是元素的挂载点，无需手动调用$mound()方法
+        */
+        //根组件挂载方式二
+        let app = new Vue({
+            el:"#app"
+        })
+
+        /**
+         * new Vue()的作用 源码第5073行
+         * 1.将_init方法挂载到Vue的原型上，调用mergeOptions方法合并我们在new Vue传入的配置选项
+         *  如果在配置选项中有el配置，则会直接调用$mount()方法
+         * 2.调用钩子函数，初始化生命周期，初始化事件函数，
+         *   调用生命周期函数beforeCreate,初始化状态，调用生命周期函数created
+         *   执行的方法有：(1) initLifecycle(vm)
+         *                (2) initEvents(vm);
+         *                (3) initRender(vm);
+         *                (4) callHook(vm, 'beforeCreate');
+         *                (5) initInjections(vm);初始化注入的数据
+         *                (6) initState(vm);初始化data,computed,watch数据
+         *                (7) initProvide(vm); 
+         *                (8) callHook(vm, 'created');
+         * 
+         * 
+        */
+    </script>
+</body>
+</html>
