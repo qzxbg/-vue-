@@ -11908,6 +11908,7 @@
     el = el && query(el);
 
     /* istanbul ignore if */
+    //如果el将body和HTML作为挂载点，就会抛出一个错误警告
     if (el === document.body || el === document.documentElement) {
       warn(
         "Do not mount Vue to <html> or <body> - mount to normal elements instead."
@@ -11917,8 +11918,12 @@
 
     var options = this.$options;
     // resolve template/el and convert to render function
+
+    //在配置选项没有render函数的情况下
     if (!options.render) {
       var template = options.template;
+      //有template选项的情况下
+
       if (template) {
         if (typeof template === 'string') {
           if (template.charAt(0) === '#') {
@@ -11940,7 +11945,9 @@
           return this
         }
       } else if (el) {
-        template = getOuterHTML(el);
+        //没有template，有el的情况下，会将el的OuterHTML的值作为它的值
+        template = getOuterHTML(el);//获取el的OuterHTML,如果没有找到会自动创建，
+        //并深度克隆一份副本作为创建节点的子节点
       }
       if (template) {
         /* istanbul ignore if */

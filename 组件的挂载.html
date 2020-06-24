@@ -25,7 +25,10 @@
         // app.$mount("#app");
 
         /**
-         * el选项的值就是元素的挂载点，无需手动调用$mound()方法
+         * el选项的值就是元素的挂载点，无需手动调用$mound()方法，Vue会自动调用$mount()方法
+         * el的outerHTML会作为template(在没有该配置选项的情况下，如果有则会覆盖el的outerHTML)
+         * 
+         * 组件创建的优先级：render()->template->el
         */
         //根组件挂载方式二
         let app = new Vue({
