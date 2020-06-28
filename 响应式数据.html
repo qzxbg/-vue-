@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式数据</title>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>姓名：{{user.name}}</h1>
+        <p>{{user.age}}</p>
+        <p>{{user.gender}}</p>
+    </div>
+    <script>
+        //vue2中响应式数据实现是建立在Object.defineProperty方法上，由于该方法的本身的一些特性，在拦截数据处理上会有
+        //一些问题：
+        //1.对象新增属性无法拦截
+        //2.数组变动无法拦截：
+        //（1）利用索引直接设置一个数组项时。
+        //解决方法：Vue.set(),(new Vue()).set()
+        //修改数组的长度时
+        //对于数组原生的方法，vue内部做了一些处理，会通知发生变化的视图数据
+        let app1 = new Vue({
+            el:"#app",
+            data:{
+                user:{
+                    name:"小明",
+                    age:18
+                }
+            }
+        })
+    </script>
+</body>
+</html>

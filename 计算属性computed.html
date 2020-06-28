@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性computed</title>
+    <script src="./js/index.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{a}}</h1>
+        <h2>{{b}} - {{getVal()}}</h2>
+        <button @click="inc">按钮</button>
+        <button @click="incB">按钮B</button>
+        <h2>{{val}}</h2>
+    </div>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                a: 1,
+                b:100
+            },
+            computed:{
+                val:{
+                    get(){
+                        console.log("我重新计算了");
+                        return this.a * 10;
+                    }
+                }
+            },
+            methods:{
+                inc(){
+                    this.a++;
+                },
+                incB(){
+                    this.b++;
+                },
+                getVal(){
+                    console.log("我是函数");
+                    return this.a * 10;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

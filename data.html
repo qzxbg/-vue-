@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据的定义</title>
+    <script src="./js/index.js"></script>
+</head>
+
+<body>
+    <div id="app">数据data的定义</div>
+    <script>
+
+        //data的数据定义方式，无论是哪一种定义方式，其结果必须为对象
+
+        //1.data的对象模式
+        // let app = new Vue({
+        //     data:{
+        //         a:1
+        //     }
+        // })
+        //缺点：当组件服复用时，数据之间会相互影响，可复用组件必须采取data的函数定义模式
+
+        //2.data的函数模式
+        // let app = new Vue({
+        //     data(){
+        //         return {
+
+        //         }
+        //     }
+        // })
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                val: 1
+            }
+        })
+    </script>
+</body>
+
+</html>

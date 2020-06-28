@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch监听</title>
+    <script src="./js/index.js"></script>
+</head>
+
+<body>
+    <div id="app">{{val}}</div>
+    <div>{{vals}}</div>
+    <div>{{a}}</div>
+    <div>{{b}}</div>
+    <script>
+        /**
+         * 
+         * data:原始数据
+         * computed:派生数据
+         * watch:监听数据
+        */
+        let app = new Vue({
+            el: "#app",
+            data:{
+                a:1,
+                b:100,
+                c:1000,
+                d:100.10
+            },
+            computed:{
+                val(){
+                    //根据多个值的变化得到（修改）一个数据
+                    return this.a + this.b + this.c;
+                }
+            },
+            watch:{
+                vals(){
+                    this.a = parseInt(this.d)
+                    this.b = d.toString().split(".")[1];
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

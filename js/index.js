@@ -3358,14 +3358,21 @@
   // wrapper function for providing a more flexible interface
   // without getting yelled at by flow
   function createElement(
+    //文本
     context,
+    //标签名
     tag,
+    //数据
     data,
+    //子节点
     children,
+    //规范化类型
     normalizationType,
+    //始终标准化
     alwaysNormalize
   ) {
     if (Array.isArray(data) || isPrimitive(data)) {
+      //进行data数据类型判定
       normalizationType = children;
       children = data;
       data = undefined;
@@ -3498,6 +3505,8 @@
 
   /*  */
 
+  //初始化render函数
+
   function initRender(vm) {
     vm._vnode = null; // the root of the child tree
     vm._staticTrees = null; // v-once cached trees
@@ -3510,9 +3519,13 @@
     // so that we get proper render context inside it.
     // args order: tag, data, children, normalizationType, alwaysNormalize
     // internal version is used by render functions compiled from templates
+
+    //模板调用
     vm._c = function (a, b, c, d) { return createElement(vm, a, b, c, d, false); };
     // normalization is always applied for the public version, used in
     // user-written render functions.
+    
+    //Vue实例拥render选项
     vm.$createElement = function (a, b, c, d) { return createElement(vm, a, b, c, d, true); };
 
     // $attrs & $listeners are exposed for easier HOC creation.
@@ -4842,6 +4855,7 @@
 
   function createComputedGetter(key) {
     return function computedGetter() {
+      console.log("我是createComputedGetter");
       var watcher = this._computedWatchers && this._computedWatchers[key];
       if (watcher) {
         if (watcher.dirty) {

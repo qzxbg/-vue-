@@ -1,23 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>模板渲染</title>
     <script src="./js/index.js"></script>
 </head>
+
 <body>
     <div id="app">开课吧</div>
     <script>
         /**
-         * render() :渲染视图，生成虚拟的Dom节点vNode
+         * render() :渲染视图，生成虚拟的Dom节点vNode对象
+            
+            如果vue选项中有render函数存在，则Vue构造函数不会从template选项或通过el选项指定的挂载元素中提取
+            出的HTML模板编译渲染函数
+
+            vNode实际上一个用来描述HTML节点的一个js对象，这个对象和我们平时所说的Dom对象有一定的关系
+
+            render函数只会渲染不同的部分
          * 
         */
         let app = new Vue({
-            el:"#app",
-            render(){
+            el: "#app",
+            render(createElement) {
+                let vNode = createElement('h1', {
+                    attrs: {
+                        id: "title"
+                    },
+                    style: {
+                        color: "red",
+
+                    }
+                }, '欢迎来到开课吧');
+                console.log(vNode)
+                return vNode;
             }
         })
+
+        //js Dom =>用来描述文档结构的js对象，因为文档上一段字符串，操作字符串（添加，修改，删除字符串其中一个元素）
+
+        //原生Dom对象：1.结构信息复杂 2.操作耗时 3.消耗资源
+        //数据变化->Dom更改
+
+        //虚拟Dom
+        //数据变化->vDom->Dom更改
+
+        //html模板解析的過程：
+        //html->Ast->createElement->Vnode->dom
+
+        //render函數：
+        //createElement->vNode->dom
+
+        //如果没有render选项，
+        //html模板会通过complieToFunctions方法生成一个对象，会调用该对象下的render方法
+
     </script>
 </body>
+
 </html>
